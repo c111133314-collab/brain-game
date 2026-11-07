@@ -258,11 +258,9 @@
 
     <!-- 關卡情境描述 -->
     <div class="scenario-box">
-        <div class="scenario-tag" id="stage-tag">第 1 / 3 關：拖延怪襲來</div>
-        <div class="scenario-title" id="stage-title">面對 10 頁的期末報告，完全不想動手...</div>
-        <div class="scenario-desc" id="stage-desc">
-            你打開空白文件，想到要寫整整 10 頁就感到無比痛苦，腦袋一片空白，忍不住想拿手機起來刷...
-        </div>
+        <div class="scenario-tag" id="stage-tag">第 1 / 5 關：拖延怪襲來</div>
+        <div class="scenario-title" id="stage-title">載入中...</div>
+        <div class="scenario-desc" id="stage-desc">載入中...</div>
     </div>
 
     <!-- 白話抉擇選項 -->
@@ -307,7 +305,7 @@
 </div>
 
 <script>
-    // 可供自行修改的關卡情境資料庫
+    // 擴充後的 5 大關卡情境資料庫
     const stages = [
         {
             tag: "第 1 關：拖延怪襲來（痛覺活化）",
@@ -328,7 +326,7 @@
                     tag: "關注過程 (Unit 4)",
                     isCorrect: true,
                     hpChange: 0,
-                    scoreChange: 35,
+                    scoreChange: 20,
                     unlockedSkill: "🍅 25min 番茄戰術",
                     science: "大腦痛覺中樞只對『最終結果』產生痛苦。當你把目標縮小到『專注 25 分鐘的過程』時，痛覺中樞就會安靜下來，拖延感立刻消失！",
                     practice: "打開計時器設 25 分鐘，告訴自己這段時間就算只寫出 3 行白話字也算成功！"
@@ -336,15 +334,41 @@
             ]
         },
         {
-            tag: "第 2 關：思維定勢 Boss（專注與發散模式切換）",
-            title: "這道數學題你已經算了 15 分鐘，越算越氣卻找不到答案...",
+            tag: "第 2 關：報告記憶挑戰（記憶宮殿法）",
+            title: "明天要進行 15 分鐘無講稿簡報，必須背下 10 個核心要點與數據...",
+            desc: "你看著密密麻麻的文字講稿，死記硬背了 5 遍，但順序還是經常搞混，一緊張就全忘了...",
+            options: [
+                {
+                    text: "✅ 使用「記憶宮殿法」，將報告要點與家裡的路線地點進行圖像連結",
+                    tag: "視覺空間記憶 (Unit 2)",
+                    isCorrect: true,
+                    hpChange: +10,
+                    scoreChange: 25,
+                    unlockedSkill: "🏰 記憶宮殿視覺鏈",
+                    science: "人類大腦演化出強大的【視覺與空間記憶】（海馬迴非常擅長記路線）。將抽象概念化為誇張的視覺畫面，並沿著熟悉的房間路線擺放，能大幅減輕工作記憶負擔！",
+                    practice: "想像大門放著報告第 1 要點（如巨大數據）、玄關放第 2 要點，上台時只需在腦海裡『走一遍家裡』就能精準回想。"
+                },
+                {
+                    text: "❌ 拿著講稿反覆死讀 20 遍，直到大腦產生「我都背起來了」的錯覺",
+                    tag: "無效死記",
+                    isCorrect: false,
+                    hpChange: -25,
+                    scoreChange: 0,
+                    science: "單純反覆閱讀文字只會在短期記憶流轉，無法建立強大的神經檢索線索（Retrieval Cues）。上台一緊張皮質醇激增，記憶就會斷線。",
+                    practice: "不要只靠視覺文字死記，善用圖像與空間連結才是記憶長久之道。"
+                }
+            ]
+        },
+        {
+            tag: "第 3 關：思維定勢 Boss（專注與發散模式切換）",
+            title: "這道數學/程式題你已經算了 15 分鐘，越算越氣卻找不到答案...",
             desc: "你用了 3 種算術方法都算不出來，計算紙塗得滿滿的，頭開始微微發痛，覺得自己很笨...",
             options: [
                 {
                     text: "❌ 氣死我了！今天不把它算出來我不睡覺！繼續死磕！",
                     tag: "思維定勢死鎖 (Unit 3)",
                     isCorrect: false,
-                    hpChange: -40,
+                    hpChange: -35,
                     scoreChange: 0,
                     science: "這就是神經科學上的【思維定勢 (Einstellung Effect)】！當你在『專注模式』陷在錯誤解法時，大腦神經迴路會重複走舊路，你死磕再久也找不到新思路。",
                     practice: "死磕只會讓你腦袋燒毀。此時繼續專注只是在浪費時間。"
@@ -354,7 +378,7 @@
                     tag: "發散模式切換 (Unit 1)",
                     isCorrect: true,
                     hpChange: +10,
-                    scoreChange: 35,
+                    scoreChange: 20,
                     unlockedSkill: "🌊 發散切換法",
                     science: "當你停止死磕時，大腦會切換到【發散模式】！此時腦脊髓液會沖洗代謝毒素，大腦會在背景自動重新連結資訊，往往在你洗臉時突然彈出『頓悟（Eureka）』！",
                     practice: "卡關超過 10 分鐘時，強迫自己離開書桌！去運動、散步或睡個短覺，給大腦背景運算的空間。"
@@ -362,7 +386,33 @@
             ]
         },
         {
-            tag: "第 3 關：應試焦慮與記憶鞏固",
+            tag: "第 4 關：複習檢測陷阱（能力錯覺 vs 主動回想）",
+            title: "讀完一章厚厚的課本後，你想確認自己到底學會了多少...",
+            desc: "課本上畫滿了各式彩色的螢光筆劃線，每個段落看起來都相當熟悉...",
+            options: [
+                {
+                    text: "❌ 翻看畫滿螢光筆的頁面，點點頭覺得「嗯，這些我都懂了」",
+                    tag: "能力錯覺陷阱 (Unit 3)",
+                    isCorrect: false,
+                    hpChange: -20,
+                    scoreChange: 0,
+                    science: "劃重點與重讀會產生【能力錯覺 (Illusion of Competence)】！看懂（Recognition）不等於能提取（Recall），大腦只是因為眼睛看到文字產生熟悉感，不代表神經連結已經建立。",
+                    practice: "塗滿螢光筆只是讓課本變好看，不會讓你變聰明！"
+                },
+                {
+                    text: "✅ 蓋上課本，拿出一張白紙，嘗試憑記憶寫出該章節的核心大綱",
+                    tag: "主動回想 (Active Recall)",
+                    isCorrect: true,
+                    hpChange: 0,
+                    scoreChange: 25,
+                    unlockedSkill: "📝 閉書主動提取",
+                    science: "【主動回想 (Active Recall)】是建立強大組塊（Chunking）的核心！大腦在努力提取記憶時產生的微小挫折感，才是刺激神經元建立新連結（Hebb's Rule）的關鍵。",
+                    practice: "看完一頁後關上書，問自己：「這頁剛剛講了哪 3 個重點？」嘗試講給自己聽。"
+                }
+            ]
+        },
+        {
+            tag: "第 5 關：應試焦慮與記憶鞏固",
             title: "明天就要大考了，你發現還有 500 個英文單字沒背完...",
             desc: "你的心跳快速發瘋跳動，手心出汗，腦袋裡一直有個聲音說：「完蛋了，我一定會考砸...」",
             options: [
@@ -371,8 +421,7 @@
                     tag: "認知重塑 (Unit 6)",
                     isCorrect: true,
                     hpChange: 0,
-                    scoreChange: 30,
-                    unlockedSkill: "🫁 戰或逃重塑劑",
+                    scoreChange: 20,
                     science: "這是在重新詮釋【戰或逃 (Fight-or-Flight)】生理反應！心跳加速與身體發抖只是皮質醇與腎上腺素分泌，將其解讀為『興奮戰備』能保護工作記憶插槽不被焦慮佔據。",
                     practice: "考前做 3 次腹式呼吸，告訴自己：『這不是害怕，是我的大腦正在進入極限戰鬥模式！』"
                 },
@@ -396,14 +445,14 @@
 
     function renderStage() {
         const stage = stages[currentStageIndex];
-        document.getElementById("stage-tag").innerText = stage.tag;
+        document.getElementById("stage-tag").innerText = `第 ${currentStageIndex + 1} / ${stages.length} 關：${stage.tag.split('：')[1] || stage.tag}`;
         document.getElementById("stage-title").innerText = stage.title;
         document.getElementById("stage-desc").innerText = stage.desc;
 
         const container = document.getElementById("options-container");
         container.innerHTML = "";
 
-        stage.options.forEach((opt, idx) => {
+        stage.options.forEach((opt) => {
             const btn = document.createElement("button");
             btn.className = "option-btn";
             btn.innerHTML = `
@@ -475,7 +524,11 @@
     }
 
     function showEndGame() {
-        alert(`🎉 遊戲結束！\n\n最終分數：${score} 分\n剩餘意志力 HP：${hp}\n\n恭喜你順利習得大腦神經科學的真實學習策略！`);
+        const finalMessage = hp <= 0 
+            ? `💥 意志力耗盡！大腦燃燒過度陷入癱瘓... \n\n最終積分：${score} 分\n建議立刻去睡個覺讓大腦排毒！`
+            : `🎉 恭喜通關！全拿 ${score} 高分！\n\n剩餘意志力 HP：${hp}\n你已經順利解鎖並掌握了大腦神經科學的 4 大核心自學策略！`;
+        
+        alert(finalMessage);
         location.reload();
     }
 
