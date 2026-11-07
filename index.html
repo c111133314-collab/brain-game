@@ -258,7 +258,7 @@
 
     <!-- 關卡情境描述 -->
     <div class="scenario-box">
-        <div class="scenario-tag" id="stage-tag">第 1 / 5 關：拖延怪襲來</div>
+        <div class="scenario-tag" id="stage-tag">🎲 隨機關卡抽樣中...</div>
         <div class="scenario-title" id="stage-title">載入中...</div>
         <div class="scenario-desc" id="stage-desc">載入中...</div>
     </div>
@@ -305,10 +305,10 @@
 </div>
 
 <script>
-    // 擴充後的 5 大關卡情境資料庫
-    const stages = [
+    // 包含 12 個對應 Coursera 課程概念的情境題庫
+    const scenarioPool = [
         {
-            tag: "第 1 關：拖延怪襲來（痛覺活化）",
+            tag: "拖延怪襲來（痛覺活化）",
             title: "面對 10 頁的期末報告，完全不想動手...",
             desc: "你打開空白文件，想到要寫整整 10 頁就感到無比痛苦，腦袋一片空白，忍不住想拿手機起來刷...",
             options: [
@@ -334,7 +334,7 @@
             ]
         },
         {
-            tag: "第 2 關：報告記憶挑戰（記憶宮殿法）",
+            tag: "報告記憶挑戰（記憶宮殿法）",
             title: "明天要進行 15 分鐘無講稿簡報，必須背下 10 個核心要點與數據...",
             desc: "你看著密密麻麻的文字講稿，死記硬背了 5 遍，但順序還是經常搞混，一緊張就全忘了...",
             options: [
@@ -360,7 +360,7 @@
             ]
         },
         {
-            tag: "第 3 關：思維定勢 Boss（專注與發散模式切換）",
+            tag: "思維定勢 Boss（專注與發散模式切換）",
             title: "這道數學/程式題你已經算了 15 分鐘，越算越氣卻找不到答案...",
             desc: "你用了 3 種算術方法都算不出來，計算紙塗得滿滿的，頭開始微微發痛，覺得自己很笨...",
             options: [
@@ -386,7 +386,7 @@
             ]
         },
         {
-            tag: "第 4 關：複習檢測陷阱（能力錯覺 vs 主動回想）",
+            tag: "複習檢測陷阱（能力錯覺 vs 主動回想）",
             title: "讀完一章厚厚的課本後，你想確認自己到底學會了多少...",
             desc: "課本上畫滿了各式彩色的螢光筆劃線，每個段落看起來都相當熟悉...",
             options: [
@@ -412,7 +412,7 @@
             ]
         },
         {
-            tag: "第 5 關：應試焦慮與記憶鞏固",
+            tag: "應試焦慮與記憶鞏固（認知重塑）",
             title: "明天就要大考了，你發現還有 500 個英文單字沒背完...",
             desc: "你的心跳快速發瘋跳動，手心出汗，腦袋裡一直有個聲音說：「完蛋了，我一定會考砸...」",
             options: [
@@ -422,6 +422,7 @@
                     isCorrect: true,
                     hpChange: 0,
                     scoreChange: 20,
+                    unlockedSkill: "🫁 戰或逃重塑劑",
                     science: "這是在重新詮釋【戰或逃 (Fight-or-Flight)】生理反應！心跳加速與身體發抖只是皮質醇與腎上腺素分泌，將其解讀為『興奮戰備』能保護工作記憶插槽不被焦慮佔據。",
                     practice: "考前做 3 次腹式呼吸，告訴自己：『這不是害怕，是我的大腦正在進入極限戰鬥模式！』"
                 },
@@ -435,6 +436,186 @@
                     practice: "寧可複習核心重點後好好睡覺，睡眠時大腦才會把短期記憶轉化為長期組塊。"
                 }
             ]
+        },
+        {
+            tag: "跨主題綜合題型（交錯練習 Interleaving）",
+            title: "你在準備理科考試時，該如何排定練習題目的順序？",
+            desc: "你面前有 三角函數、微積分、機率統計 各 20 道題目...",
+            options: [
+                {
+                    text: "✅ 混合題目！做 2 題三角函數、接著做 2 題微積分、再做 2 題機率",
+                    tag: "交錯練習 (Unit 6)",
+                    isCorrect: true,
+                    hpChange: +5,
+                    scoreChange: 25,
+                    unlockedSkill: "🔀 靈活交錯雙刀",
+                    science: "【交錯練習 (Interleaving)】能迫使大腦不斷判斷『這道題該用哪種解法』，而不是盲目代公式！這能顯著提升思考靈敏度與跨領域遷移能力。",
+                    practice: "不要一次做 50 題同類型的題目，混合不同章節做練習效果更好！"
+                },
+                {
+                    text: "❌ 集中火力！今天一口氣把 20 題三角函數做完，明天再做微積分",
+                    tag: "過度學習 (Overlearning)",
+                    isCorrect: false,
+                    hpChange: -15,
+                    scoreChange: 0,
+                    science: "單一題型連續做太多次會進入【過度學習 (Overlearning)】，大腦陷入自動駕駛狀態，無法培養在考場上辨識『何時該用何種解法』的能力。",
+                    practice: "重複做已經熟悉的題型只是獲得虛假的成就感，無法提升實力。"
+                }
+            ]
+        },
+        {
+            tag: "觀念理解測試（費曼技巧 Feynman Technique）",
+            title: "你剛學完一個非常抽象的神經科學理論，想確認自己是否真的懂了...",
+            desc: "課本上的專有名詞非常繁複，你感到腦袋有點昏沉...",
+            options: [
+                {
+                    text: "✅ 嘗試用最簡單的白話文與生活比喻，向完全不懂這主題的朋友解釋一遍",
+                    tag: "費曼技巧 (Unit 5)",
+                    isCorrect: true,
+                    hpChange: 0,
+                    scoreChange: 25,
+                    unlockedSkill: "🗣️ 費曼極簡轉譯",
+                    science: "【費曼技巧 (Feynman Technique)】要求你拋棄專業術語！當你能用小學生都聽得懂的比喻表達時，代表你已經建立好清晰強壯的神經組塊（Chunk）。",
+                    practice: "學習完新觀念後，問自己：「我能用 3 句話解釋給阿嬤聽嗎？」"
+                },
+                {
+                    text: "❌ 完整背下課本上的名詞定義，考試時直接原封不動照抄複製",
+                    tag: "死記術語",
+                    isCorrect: false,
+                    hpChange: -20,
+                    scoreChange: 0,
+                    science: "背誦名詞不等於理解概念（Swapping Jargon for Understanding）。一旦題目稍微改變敘述方式，大腦就會全盤崩潰。",
+                    practice: "擺脫專有名詞的保護色，用自己的話重新闡述才是真正的理解。"
+                }
+            ]
+        },
+        {
+            tag: "考場答題策略（先難後易法則）",
+            title: "拿到期末考卷，看到第一大題就是佔分 30 分的超級魔王難題...",
+            desc: "你發現第一時間竟然毫無頭緒，心跳開始加速...",
+            options: [
+                {
+                    text: "✅ 認真讀題並思考 1 分鐘，確認卡關後立刻跳過，先寫後面的簡單選擇題",
+                    tag: "先難後易 (Unit 6)",
+                    isCorrect: true,
+                    hpChange: 0,
+                    scoreChange: 25,
+                    unlockedSkill: "🎯 先難後易戰術",
+                    science: "【先難後易法則 (Hard-Start-Jump-to-Easy)】！先讀難題能向大腦發出信號，啟動『背景發散模式』運算；隨後寫簡單題能建立信心，等你回頭時難題常已有新靈感！",
+                    practice: "考場上不要跟難題硬幹！先『觸發』難題，再『跳開』寫簡單題。"
+                },
+                {
+                    text: "❌ 跟它死磕！按順序來，不把第一大題解開絕對不往後寫！",
+                    tag: "順序死磕",
+                    isCorrect: false,
+                    hpChange: -30,
+                    scoreChange: 0,
+                    science: "按順序死磕會浪費寶貴時間，並引發極大焦慮，佔據你僅有的 4 個工作記憶插槽，最後連後面的簡單題都沒時間寫。",
+                    practice: "考卷不是用來按順序寫的，策略性跳題才是高效應試關鍵。"
+                }
+            ]
+        },
+        {
+            tag: "壞習慣重塑（殭屍模式四要素）",
+            title: "你每次一坐到書桌前準備讀書，手就會自動伸去拿手機刷社群...",
+            desc: "你深感自責，覺得自己是一個完全沒有自律能力的人...",
+            options: [
+                {
+                    text: "✅ 改變「線索」與「獎勵」：把手機放到隔壁房間，專注 25 分鐘後獎勵自己喝杯咖啡",
+                    tag: "習慣四要素 (Unit 4)",
+                    isCorrect: true,
+                    hpChange: +10,
+                    scoreChange: 20,
+                    unlockedSkill: "🧟 殭屍習慣重構",
+                    science: "習慣（殭屍模式）由【線索、慣例、獎勵、信念】構成！單靠意志力無法對抗線索，直接從環境上『移除線索』並設定『明確獎勵』是最有效重塑習慣的方法。",
+                    practice: "不要考驗自己的意志力！直接把干擾源放去視線看不到的地方。"
+                },
+                {
+                    text: "❌ 把手機放在桌上，發毒誓憑意志力死死忍住不碰它",
+                    tag: "意志力對決",
+                    isCorrect: false,
+                    hpChange: -25,
+                    scoreChange: 0,
+                    science: "前額葉皮質的意志力是極其有限的資源！每次看到手機在眼前，大腦都在消耗精力抗拒誘惑，讀書效率大打折扣。",
+                    practice: "自律的本質不是忍受誘惑，而是優化環境。"
+                }
+            ]
+        },
+        {
+            tag: "大腦排毒與睡眠（睡眠清毒機制）",
+            title: "距離考試只剩 8 小時，你還有一整章還沒讀完，現在該怎麼辦？",
+            desc: "眼睛酸澀，大腦昏沉，但心裡充滿了沒讀完的罪惡感...",
+            options: [
+                {
+                    text: "✅ 快速瀏覽核心大綱 30 分鐘，隨後立刻去睡滿 7 小時",
+                    tag: "睡眠記憶固化 (Unit 4)",
+                    isCorrect: true,
+                    hpChange: +20,
+                    scoreChange: 20,
+                    science: "睡眠時大腦細胞會收縮 60%，【腦脊髓液】會沖洗掉白天累積的神經毒素！且睡眠是大腦將短期記憶轉化為長期神經組塊（Chunking）的唯一時間。",
+                    practice: "熬夜讀書就像開著油箱混有糖粒的賽車！睡飽才是最高效的複習。"
+                },
+                {
+                    text: "❌ 喝兩罐能量飲料，徹夜通宵 K 書直到清晨直接去考場",
+                    tag: "毒素累積",
+                    isCorrect: false,
+                    hpChange: -45,
+                    scoreChange: 0,
+                    science: "剝奪睡眠會使神經毒素大量堆積，大腦反應速度降低 40%，工作記憶大幅縮水，考場上極易出現『腦袋一片空白』的失憶現象。",
+                    practice: "寧可少讀一點也要睡飽，好的大腦狀態比死記硬背更重要。"
+                }
+            ]
+        },
+        {
+            tag: "突破學習瓶頸（神經可塑性與運動增益）",
+            title: "連續讀書 3 天後，你感到學習效率嚴重停滯，新知識完全進不去...",
+            desc: "你坐在書桌前盯著課本發呆，覺得大腦像一塊乾掉的吸水海綿...",
+            options: [
+                {
+                    text: "✅ 穿上慢跑鞋，出門進行 20 分鐘快走或慢跑有氧運動",
+                    tag: "神經可塑性 (Unit 1 & 6)",
+                    isCorrect: true,
+                    hpChange: +15,
+                    scoreChange: 20,
+                    science: "有氧運動能刺激大腦分泌【BDNF (腦衍生神經滋養因子)】！研究證實運動能促進海馬迴產生新的神經元，顯著提升大腦的神經可塑性與學習吸收率。",
+                    practice: "卡關時最好的充電方式不是看電視發呆，而是出門讓心跳加速流汗！"
+                },
+                {
+                    text: "❌ 繼續趴在書桌上硬撐，滑手機發呆耗掉一下午",
+                    tag: "無效耗能",
+                    isCorrect: false,
+                    hpChange: -20,
+                    scoreChange: 0,
+                    science: "久坐不動會減少腦部血流量與氧氣供應，大腦會進入低能耗運作模式，無法建立任何新的神經連結。",
+                    practice: "動起來才能活化大腦，運動是學習不可或缺的加速器。"
+                }
+            ]
+        },
+        {
+            tag: "打造知識庫（組塊化 Chunking 步驟）",
+            title: "面對全新且複雜的跨領域學科（如：程式語言或經濟學），該如何入門？",
+            desc: "無數零碎的語法或公式讓你感到頭昏眼花，無所適從...",
+            options: [
+                {
+                    text: "✅ 遵循組塊三步驟：專注細節 ➔ 理解整體大意 ➔ 掌握使用脈絡（何時用/何時不用）",
+                    tag: "組塊化 Chunking (Unit 3)",
+                    isCorrect: true,
+                    hpChange: 0,
+                    scoreChange: 25,
+                    unlockedSkill: "🧩 組塊大師連結",
+                    science: "【組塊 (Chunk)】是將碎片資訊打包成意義線索！掌握背景脈絡（Context）能讓你知道何時該調用該組塊，形成強大的知識網絡。",
+                    practice: "不要只記孤立的公式，一定要了解這個公式是用來解決什麼現實問題的！"
+                },
+                {
+                    text: "❌ 死背每一行細節與公式，不管它們之間的關聯與用途",
+                    tag: "零碎記憶",
+                    isCorrect: false,
+                    hpChange: -20,
+                    scoreChange: 0,
+                    science: "沒有建立組塊的記憶就像沒有分類的檔案庫，不僅極占工作記憶空間，在需要使用時大腦也完全搜尋不到。",
+                    practice: "學習要『先看森林，再看樹木』，先掌握架構再填充細節。"
+                }
+            ]
         }
     ];
 
@@ -442,10 +623,31 @@
     let hp = 100;
     let score = 0;
     let unlockedSkills = [];
+    let activeStages = [];
+
+    // 洗牌演算法（Fisher-Yates Shuffle）
+    function shuffleArray(array) {
+        const arr = [...array];
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }
+
+    // 初始化遊戲關卡（隨機從 12 個題庫抽出 5 關）
+    function initGame() {
+        activeStages = shuffleArray(scenarioPool).slice(0, 5);
+        currentStageIndex = 0;
+        hp = 100;
+        score = 0;
+        unlockedSkills = [];
+        renderStage();
+    }
 
     function renderStage() {
-        const stage = stages[currentStageIndex];
-        document.getElementById("stage-tag").innerText = `第 ${currentStageIndex + 1} / ${stages.length} 關：${stage.tag.split('：')[1] || stage.tag}`;
+        const stage = activeStages[currentStageIndex];
+        document.getElementById("stage-tag").innerText = `🎲 隨機第 ${currentStageIndex + 1} / 5 關：${stage.tag}`;
         document.getElementById("stage-title").innerText = stage.title;
         document.getElementById("stage-desc").innerText = stage.desc;
 
@@ -516,7 +718,7 @@
         document.getElementById("result-modal").style.display = "none";
         currentStageIndex++;
 
-        if (currentStageIndex >= stages.length || hp <= 0) {
+        if (currentStageIndex >= activeStages.length || hp <= 0) {
             showEndGame();
         } else {
             renderStage();
@@ -526,14 +728,14 @@
     function showEndGame() {
         const finalMessage = hp <= 0 
             ? `💥 意志力耗盡！大腦燃燒過度陷入癱瘓... \n\n最終積分：${score} 分\n建議立刻去睡個覺讓大腦排毒！`
-            : `🎉 恭喜通關！全拿 ${score} 高分！\n\n剩餘意志力 HP：${hp}\n你已經順利解鎖並掌握了大腦神經科學的 4 大核心自學策略！`;
+            : `🎉 恭喜通關！全拿 ${score} 分高分！\n\n剩餘意志力 HP：${hp}\n你已經順利解鎖並掌握了大腦神經科學的 4 大核心自學策略！`;
         
         alert(finalMessage);
-        location.reload();
+        initGame(); // 重新洗牌開新局
     }
 
-    // 初始化
-    renderStage();
+    // 初始化啟動
+    initGame();
 </script>
 
 </body>
