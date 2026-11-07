@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>大腦大冒險：學習心理學現實挑戰</title>
+    
+    <!-- ==========================================
+         全站 UI 視覺與元件排版樣式表 (CSS)
+         ========================================== -->
     <style>
+        /* 基礎重設 (CSS Reset) 與全域字型設定 */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -12,6 +17,7 @@
             font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
         }
 
+        /* 遊戲背景：暗色調沉浸式夜間模式，減少視覺疲勞 */
         body {
             background-color: #121824;
             color: #ffffff;
@@ -22,6 +28,7 @@
             padding: 20px;
         }
 
+        /* 主遊戲卡片外框容器 */
         .game-card {
             width: 100%;
             max-width: 800px;
@@ -32,6 +39,7 @@
             border: 2px solid #2d374e;
         }
 
+        /* 頂部標題與數值狀態列 */
         .game-header {
             display: flex;
             justify-content: space-between;
@@ -60,9 +68,11 @@
             border-radius: 12px;
         }
 
+        /* 數值醒目色彩：血量紅、分數綠 */
         .hp-text { color: #ef476f; }
         .score-text { color: #06d6a0; }
 
+        /* 當前關卡情境描述區塊 */
         .scenario-box {
             background: #253047;
             border-radius: 16px;
@@ -98,6 +108,7 @@
             font-weight: bold;
         }
 
+        /* 玩家抉擇按鈕網格與互動動畫 */
         .options-grid {
             display: flex;
             flex-direction: column;
@@ -121,6 +132,7 @@
             align-items: center;
         }
 
+        /* 滑鼠懸停浮起效果 */
         .option-btn:hover {
             background: #3b4968;
             border-color: #ffd166;
@@ -135,7 +147,7 @@
             color: #94a3b8;
         }
 
-        /* 4個工作記憶插槽視覺區 */
+        /* 🧠 4個大腦工作記憶插槽區塊 (具象化大腦 4 個容量限制) */
         .memory-slots-container {
             background: #121824;
             border-radius: 14px;
@@ -157,6 +169,7 @@
             gap: 10px;
         }
 
+        /* 空白未解鎖插槽樣式 (虛線框) */
         .slot {
             background: #1e2638;
             border: 2px dashed #3b4968;
@@ -171,6 +184,7 @@
             justify-content: center;
         }
 
+        /* 已填滿解鎖插槽樣式 (亮綠發光實線框) */
         .slot.filled {
             border-style: solid;
             border-color: #06d6a0;
@@ -179,7 +193,7 @@
             font-weight: bold;
         }
 
-        /* 解析彈窗 */
+        /* 🔬 答題解析彈窗 Modal 懸浮圖層 */
         .modal {
             display: none;
             position: fixed;
@@ -247,7 +261,11 @@
 </head>
 <body>
 
+<!-- ==========================================
+     HTML 網頁主體結構
+     ========================================== -->
 <div class="game-card">
+    <!-- 頂部資訊欄：顯示遊戲名稱與玩家即時狀態數據 -->
     <div class="game-header">
         <div class="title">🧠 大腦大冒險：學習實踐篇</div>
         <div class="stats-group">
@@ -256,20 +274,20 @@
         </div>
     </div>
 
-    <!-- 關卡情境描述 -->
+    <!-- 關卡主要情境顯示區塊 -->
     <div class="scenario-box">
         <div class="scenario-tag" id="stage-tag">🎲 隨機關卡抽樣中...</div>
         <div class="scenario-title" id="stage-title">載入中...</div>
         <div class="scenario-desc" id="stage-desc">載入中...</div>
     </div>
 
-    <!-- 白話抉擇選項 -->
+    <!-- 玩家選擇區塊 (選項按鈕將由 JavaScript 動態生成注入) -->
     <div class="options-title">👉 如果是你，現實中會怎麼做？</div>
     <div class="options-grid" id="options-container">
-        <!-- 動態渲染選項 -->
+        <!-- 動態渲染選項放置處 -->
     </div>
 
-    <!-- 4 個工作記憶插槽視覺區 -->
+    <!-- 4 個工作記憶插槽區塊 (具象化呈現神經科學中人類大腦 4 個容量極限) -->
     <div class="memory-slots-container">
         <div class="memory-title">
             <span>🧠 大腦工作記憶區 (固定 4 個插槽容量上限)</span>
@@ -284,19 +302,21 @@
     </div>
 </div>
 
-<!-- 解析彈窗 -->
+<!-- 神經科學原理與實踐解析彈窗 (對答結束後跳出) -->
 <div class="modal" id="result-modal">
     <div class="modal-content">
         <div id="result-badge" class="result-badge badge-success">解析成果</div>
         <div class="modal-title" id="modal-title">背後的神經科學原理</div>
         
+        <!-- 領域 1：大腦底層運作機制 -->
         <div class="science-box">
             <div style="color: #118ab2; font-weight: bold; margin-bottom: 5px;">🔬 大腦運作機制</div>
             <div id="modal-science" style="line-height: 1.5; color: #cbd5e1;"></div>
         </div>
 
+        <!-- 領域 2：現實生活中的具體行動建議 -->
         <div class="practice-box">
-            <div style="color: #06d6a0; font-weight: bold; margin-bottom: 5px;">💡 現實中你可以這樣做</div>
+            <div style="color: #06d6a0; font-weight: bold; margin-bottom: 5px;">💡 現戰中你可以這樣做</div>
             <div id="modal-practice" style="line-height: 1.5; color: #cbd5e1;"></div>
         </div>
 
@@ -304,8 +324,13 @@
     </div>
 </div>
 
+<!-- ==========================================
+     JavaScript 遊戲核心控制邏輯與神經科學題庫
+     ========================================== -->
 <script>
-    // 包含 12 個對應 Coursera 課程概念的情境題庫
+    // ----------------------------------------------------
+    // 1. 遊戲核心題庫：包含 12 個對應 Coursera 課程觀念的情境
+    // ----------------------------------------------------
     const scenarioPool = [
         {
             tag: "拖延怪襲來（痛覺活化）",
@@ -619,13 +644,18 @@
         }
     ];
 
-    let currentStageIndex = 0;
-    let hp = 100;
-    let score = 0;
-    let unlockedSkills = [];
-    let activeStages = [];
+    // ----------------------------------------------------
+    // 2. 全域遊戲狀態變數 (Game State)
+    // ----------------------------------------------------
+    let currentStageIndex = 0;  // 當前進行到第幾關
+    let hp = 100;               // 玩家意志力 HP
+    let score = 0;             // 累積學習積分
+    let unlockedSkills = [];   // 已解鎖的大腦策略技能卡
+    let activeStages = [];     // 本局抽中的 4 個隨機關卡
 
-    // 洗牌演算法（Fisher-Yates Shuffle）
+    // ----------------------------------------------------
+    // 3. 演算法：Fisher-Yates 洗牌演算法 (確保完全隨機抽題)
+    // ----------------------------------------------------
     function shuffleArray(array) {
         const arr = [...array];
         for (let i = arr.length - 1; i > 0; i--) {
@@ -635,8 +665,11 @@
         return arr;
     }
 
-    // 初始化遊戲關卡（隨機從 12 個題庫抽出 4 關，對應大腦 4 個工作記憶插槽）
+    // ----------------------------------------------------
+    // 4. 初始化遊戲：隨機抽 4 關 (對應大腦 4 個工作記憶插槽)
+    // ----------------------------------------------------
     function initGame() {
+        // 從 12 個題庫中隨機洗牌並裁切前 4 關
         activeStages = shuffleArray(scenarioPool).slice(0, 4);
         currentStageIndex = 0;
         hp = 100;
@@ -645,12 +678,16 @@
         renderStage();
     }
 
+    // ----------------------------------------------------
+    // 5. 畫面渲染：動態產生當前關卡情境與選項按鈕
+    // ----------------------------------------------------
     function renderStage() {
         const stage = activeStages[currentStageIndex];
         document.getElementById("stage-tag").innerText = `🎲 隨機第 ${currentStageIndex + 1} / 4 關：${stage.tag}`;
         document.getElementById("stage-title").innerText = stage.title;
         document.getElementById("stage-desc").innerText = stage.desc;
 
+        // 清空並重新動態生成選項按鈕
         const container = document.getElementById("options-container");
         container.innerHTML = "";
 
@@ -668,17 +705,22 @@
         updateUI();
     }
 
+    // ----------------------------------------------------
+    // 6. 玩家做抉擇：結算 HP/積分、解鎖技能與觸發解析彈窗
+    // ----------------------------------------------------
     function selectOption(opt) {
+        // 更新血量與積分 (血量限制在 0 ~ 100 之間)
         hp = Math.max(0, Math.min(100, hp + opt.hpChange));
         score += opt.scoreChange;
 
+        // 若選擇正確且該題有技能卡，將其填入工作記憶插槽 (最多 4 個)
         if (opt.unlockedSkill && !unlockedSkills.includes(opt.unlockedSkill)) {
             if (unlockedSkills.length < 4) {
                 unlockedSkills.push(opt.unlockedSkill);
             }
         }
 
-        // 顯示解析彈窗
+        // 設定並開啟 Modal 神經科學解析彈窗
         const modal = document.getElementById("result-modal");
         const badge = document.getElementById("result-badge");
         
@@ -695,11 +737,14 @@
         modal.style.display = "flex";
     }
 
+    // ----------------------------------------------------
+    // 7. 更新 UI 介面：同步即時數據與 4 個工作記憶插槽視覺
+    // ----------------------------------------------------
     function updateUI() {
         document.getElementById("hp").innerText = hp;
         document.getElementById("score").innerText = score;
 
-        // 更新 4 個工作記憶插槽
+        // 更新 4 個工作記憶插槽的文字與視覺亮燈狀態
         for (let i = 0; i < 4; i++) {
             const slotEl = document.getElementById(`slot-${i}`);
             if (unlockedSkills[i]) {
@@ -714,10 +759,14 @@
         document.getElementById("slot-count").innerText = `已解鎖策略: ${unlockedSkills.length} / 4`;
     }
 
+    // ----------------------------------------------------
+    // 8. 關卡推進與遊戲結束判定
+    // ----------------------------------------------------
     function nextStage() {
         document.getElementById("result-modal").style.display = "none";
         currentStageIndex++;
 
+        // 若 4 關全數完成或 HP 耗盡，結束遊戲
         if (currentStageIndex >= activeStages.length || hp <= 0) {
             showEndGame();
         } else {
@@ -725,16 +774,21 @@
         }
     }
 
+    // ----------------------------------------------------
+    // 9. 遊戲結算彈窗提示與新局重啟
+    // ----------------------------------------------------
     function showEndGame() {
         const finalMessage = hp <= 0 
             ? `💥 意志力耗盡！大腦燃燒過度陷入癱瘓... \n\n最終積分：${score} 分\n建議立刻去睡個覺讓大腦排毒！`
             : `🎉 恭喜通關！拿到了 ${score} 分的高分！\n\n剩餘意志力 HP：${hp}\n你成功將 4 個大腦工作記憶插槽填滿了正確的自學策略卡！`;
         
         alert(finalMessage);
-        initGame(); // 重新洗牌開新局
+        initGame(); // 重新洗牌並展開新一局
     }
 
-    // 初始化啟動
+    // ----------------------------------------------------
+    // 10. 首次載入頁面時自動啟動遊戲
+    // ----------------------------------------------------
     initGame();
 </script>
 
