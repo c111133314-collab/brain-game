@@ -326,7 +326,7 @@
                     tag: "關注過程 (Unit 4)",
                     isCorrect: true,
                     hpChange: 0,
-                    scoreChange: 20,
+                    scoreChange: 25,
                     unlockedSkill: "🍅 25min 番茄戰術",
                     science: "大腦痛覺中樞只對『最終結果』產生痛苦。當你把目標縮小到『專注 25 分鐘的過程』時，痛覺中樞就會安靜下來，拖延感立刻消失！",
                     practice: "打開計時器設 25 分鐘，告訴自己這段時間就算只寫出 3 行白話字也算成功！"
@@ -378,7 +378,7 @@
                     tag: "發散模式切換 (Unit 1)",
                     isCorrect: true,
                     hpChange: +10,
-                    scoreChange: 20,
+                    scoreChange: 25,
                     unlockedSkill: "🌊 發散切換法",
                     science: "當你停止死磕時，大腦會切換到【發散模式】！此時腦脊髓液會沖洗代謝毒素，大腦會在背景自動重新連結資訊，往往在你洗臉時突然彈出『頓悟（Eureka）』！",
                     practice: "卡關超過 10 分鐘時，強迫自己離開書桌！去運動、散步或睡個短覺，給大腦背景運算的空間。"
@@ -421,7 +421,7 @@
                     tag: "認知重塑 (Unit 6)",
                     isCorrect: true,
                     hpChange: 0,
-                    scoreChange: 20,
+                    scoreChange: 25,
                     unlockedSkill: "🫁 戰或逃重塑劑",
                     science: "這是在重新詮釋【戰或逃 (Fight-or-Flight)】生理反應！心跳加速與身體發抖只是皮質醇與腎上腺素分泌，將其解讀為『興奮戰備』能保護工作記憶插槽不被焦慮佔據。",
                     practice: "考前做 3 次腹式呼吸，告訴自己：『這不是害怕，是我的大腦正在進入極限戰鬥模式！』"
@@ -525,7 +525,7 @@
                     tag: "習慣四要素 (Unit 4)",
                     isCorrect: true,
                     hpChange: +10,
-                    scoreChange: 20,
+                    scoreChange: 25,
                     unlockedSkill: "🧟 殭屍習慣重構",
                     science: "習慣（殭屍模式）由【線索、慣例、獎勵、信念】構成！單靠意志力無法對抗線索，直接從環境上『移除線索』並設定『明確獎勵』是最有效重塑習慣的方法。",
                     practice: "不要考驗自己的意志力！直接把干擾源放去視線看不到的地方。"
@@ -551,7 +551,7 @@
                     tag: "睡眠記憶固化 (Unit 4)",
                     isCorrect: true,
                     hpChange: +20,
-                    scoreChange: 20,
+                    scoreChange: 25,
                     science: "睡眠時大腦細胞會收縮 60%，【腦脊髓液】會沖洗掉白天累積的神經毒素！且睡眠是大腦將短期記憶轉化為長期神經組塊（Chunking）的唯一時間。",
                     practice: "熬夜讀書就像開著油箱混有糖粒的賽車！睡飽才是最高效的複習。"
                 },
@@ -576,7 +576,7 @@
                     tag: "神經可塑性 (Unit 1 & 6)",
                     isCorrect: true,
                     hpChange: +15,
-                    scoreChange: 20,
+                    scoreChange: 25,
                     science: "有氧運動能刺激大腦分泌【BDNF (腦衍生神經滋養因子)】！研究證實運動能促進海馬迴產生新的神經元，顯著提升大腦的神經可塑性與學習吸收率。",
                     practice: "卡關時最好的充電方式不是看電視發呆，而是出門讓心跳加速流汗！"
                 },
@@ -635,9 +635,9 @@
         return arr;
     }
 
-    // 初始化遊戲關卡（隨機從 12 個題庫抽出 5 關）
+    // 初始化遊戲關卡（隨機從 12 個題庫抽出 4 關，對應大腦 4 個工作記憶插槽）
     function initGame() {
-        activeStages = shuffleArray(scenarioPool).slice(0, 5);
+        activeStages = shuffleArray(scenarioPool).slice(0, 4);
         currentStageIndex = 0;
         hp = 100;
         score = 0;
@@ -647,7 +647,7 @@
 
     function renderStage() {
         const stage = activeStages[currentStageIndex];
-        document.getElementById("stage-tag").innerText = `🎲 隨機第 ${currentStageIndex + 1} / 5 關：${stage.tag}`;
+        document.getElementById("stage-tag").innerText = `🎲 隨機第 ${currentStageIndex + 1} / 4 關：${stage.tag}`;
         document.getElementById("stage-title").innerText = stage.title;
         document.getElementById("stage-desc").innerText = stage.desc;
 
@@ -728,7 +728,7 @@
     function showEndGame() {
         const finalMessage = hp <= 0 
             ? `💥 意志力耗盡！大腦燃燒過度陷入癱瘓... \n\n最終積分：${score} 分\n建議立刻去睡個覺讓大腦排毒！`
-            : `🎉 恭喜通關！全拿 ${score} 分高分！\n\n剩餘意志力 HP：${hp}\n你已經順利解鎖並掌握了大腦神經科學的 4 大核心自學策略！`;
+            : `🎉 恭喜通關！拿到了 ${score} 分的高分！\n\n剩餘意志力 HP：${hp}\n你成功將 4 個大腦工作記憶插槽填滿了正確的自學策略卡！`;
         
         alert(finalMessage);
         initGame(); // 重新洗牌開新局
